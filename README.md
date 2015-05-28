@@ -1,2 +1,2 @@
 # Osc
-A simple webapp that draws math functions on a HTML5 canvas
+A simple webapp that draws math functions and render files on a HTML5 canvas

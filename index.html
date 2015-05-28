@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tracé de signaux</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+	<h1 id="titre">Tracé de signaux</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<table id="tableFonction" class="table">
+					<thead>
+						<tr>
+							<th colspan="4" style="text-align: center">Fonction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="4" style="text-align: center"><input id="fieldFonction" onchange="isrunning=false;" class="form-control" type="text" placeholder="Exemple: sin(x) , (2*cos(5*x))/(cos(10*x)+1) , ..."/></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-sm btn-default" id="cos(x)" onclick="choixFonction(this.id)">cos</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="sin(x)" onclick="choixFonction(this.id)">sin</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="tan(x)" onclick="choixFonction(this.id)">tan</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="PI" onclick="choixFonction(this.id)">&pi;</button></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-sm btn-default" id="acos(x)" onclick="choixFonction(this.id)">arccos</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="asin(x)" onclick="choixFonction(this.id)">arcsin</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="atan(x)" onclick="choixFonction(this.id)">arctan</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="pow(x,y)" onclick="choixFonction(this.id)">x^y</button></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-sm btn-default" id="exp(x)" onclick="choixFonction(this.id)">exp</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="log(x)" onclick="choixFonction(this.id)">log</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" id="sqrt(x)" onclick="choixFonction(this.id)">&radic;</button></td>
+							<td><button type="button" class="btn btn-sm btn-default" onclick="effacer()"><span class="glyphicon glyphicon-remove"></span></button></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table">
+					<thead>
+						<tr>
+							<th colspan="3" style="text-align: center">Paramètres</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><label>Min X</label><input id="fieldMinX" type="number" class="form-control"  value="0" onchange="redraw()" /></td>
+							<td><label>Max X</label><input id="fieldMaxX" type="number" class="form-control" value="10" onchange="redraw()" /></td>
+							<td><label>Fréquence</label><input id="fieldFs" type="number" class="form-control" value="2"  onchange="redraw()"/></td>
+						</tr>
+						<tr>
+							<td><label>Min Y</label><input id="fieldMinY" type="number" class="form-control"  value="0" onchange="redraw()" /></td>
+							<td><label>Max Y</label><input id="fieldMaxY" type="number" class="form-control" value="10" onchange="redraw()" /></td>
+							<td><label>Période</label><input id="fieldPeriode" type="number" class="form-control" value="3.14"  onchange="redraw()"/></td>
+						</tr>
+						<tr>
+							<td colspan="3"><button id="autozoom" type="button" class="btn btn-sm btn-default" onclick="changeAutoZoom()">Auto Zoom <span class="glyphicon glyphicon-ok"></span></button></td>	
+						</tr>
+						<tr>
+						
+							<td><button  type="button" class="btn btn-sm btn-success" onclick="redraw()">Tracer</button></td>
+							<td><button  type="reset" class="btn btn-sm btn-danger" onclick="initParameters()">Reset</button></td>
+							<td><button id="animbutton" type="button" class="btn btn-sm btn-info" onclick="startStopAnimation()">Animer</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-9">
+				<canvas id="graphCanvas">
+					Votre navigateur ne supporte pas canvas :(
+				</canvas>
+				<div class="alert alert-info">
+					Vous pouvez glisser des fichiers dans le canvas, ils seront lus automatiquement (cela peut prendre du temps).
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script src="graphcanvas.js"></script>
+
+	<script type="text/javascript">
+	function choixFonction(id){
+		var fieldFonction = document.getElementById("fieldFonction");
+		fieldFonction.value += ""+id;
+		fieldFonction.focus();
+	} 
+	function effacer() {
+		document.getElementById("fieldFonction").value="";
+	}
+	</script>
+    </body>
+</html>
